@@ -7,6 +7,8 @@ let bookform = document.querySelector('.form-container')
 
 let form = document.getElementById('form_container')
 
+let counter = 0
+
 bookform.style.visibility = 'hidden'
 
 function Book(author,title,pagecount,read){
@@ -48,15 +50,18 @@ form.addEventListener('submit',addbook);
 
 
 function addbook(event){
-    
+    event.stopPropagation();
     event.preventDefault();
+    event.stopPropagation();
     const bookdata = new FormData(event.target);
     const book = new Book();
-    book.internal_id = library.length 
+    book.internal_id = counter
+    counter ++
     bookdata.forEach((value,key)=> (book[key] = value));
     library.push(book)
     
     populate_display(book)
+   
     console.log(library)
 }
 
@@ -67,17 +72,30 @@ function populate_display(book){
     const newitem = document.createElement('div')
     const del_but = document.createElement('button')
     del_but.textContent = 'Remove'
-   
+    
    
     
     newitem.classList.add('card')
     console.log(book)
-    newitem.textContent = book.internal_id
+    newitem.textContent = book.title
 
 
         
     bookshelf.appendChild(newitem)
     newitem.appendChild(del_but)
+
+    del_but.addEventListener('click', ()=>{
+        newitem.remove()
+        for (let index = 0; index < library.length; index++) {
+            const element = library[index];
+            if(element.internal_id == book.internal_id){
+                library.splice(index,1)
+                break
+            }
+            
+        }
+        console.log(library)
+    })
 
         
         
@@ -87,9 +105,7 @@ function populate_display(book){
     
 }
 
-function delete_book(){
 
-}
 
 
 
