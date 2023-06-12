@@ -77,11 +77,26 @@ function populate_display(book){
     
     newitem.classList.add('card')
     console.log(book)
-    newitem.textContent = book.title
+    
+
+    const info = document.createElement('ul')
+    
+    for (const property in book){
+        
+        if(property != 'internal_id'){
+
+            var item = document.createElement('li')
+            item.textContent = `${property}: ${book[property]}`
+        }
+
+        info.appendChild(item)
+    }
+
 
 
         
     bookshelf.appendChild(newitem)
+    newitem.appendChild(info)
     newitem.appendChild(del_but)
 
     del_but.addEventListener('click', ()=>{

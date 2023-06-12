@@ -1,10 +1,13 @@
+*{
+    border-radius: 1rem;
+}
 body{
     height:100vh;
     margin:0;
     background-color:aqua;
     display:flex;
     flex-direction: column;
-    justify-content: center;
+    
     align-items: center;
     padding-top: 3rem;
 }
@@ -50,6 +53,7 @@ input,label{
 
 ul,li{
     list-style-type:none;
+    display:grid;
 }
 
 .form-container{
@@ -70,12 +74,12 @@ ul,li{
     display:flex;
     font-weight: bolder;
     width:200px;
-    height:200px;
+    height:300px;
     
     
 }
 
 .addbk{
     width: 200px;
-    height:200px;
+    height:300px;
 }
